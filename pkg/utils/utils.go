@@ -24,6 +24,8 @@ func (resp *Response) JSONResponse(res http.ResponseWriter, statusCode int) {
 	res.Write(responseJson)
 }
 
+// HttpClient cria um client para melhorar o ganho de perfomance em chamadas http
+// ver mais em: https://medium.com/@loginradius/how-to-use-the-http-client-in-go-to-enhance-performance-3a91b51bf693
 func HttpClient() *http.Client {
 	transport := http.DefaultTransport.(*http.Transport).Clone()
 	transport.MaxIdleConns = 100

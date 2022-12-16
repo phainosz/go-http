@@ -17,6 +17,7 @@ type user struct {
 	Phone    string `json:"phone"`
 }
 
+// Users faz a integracao com a API jsonplaceholder
 func Users(writer http.ResponseWriter, req *http.Request) {
 	switch req.Method {
 	case http.MethodGet:
@@ -31,6 +32,7 @@ func Users(writer http.ResponseWriter, req *http.Request) {
 	}
 }
 
+// getUsers retorna uma lista de users
 func getUsers(writer http.ResponseWriter) {
 	//resp, err := httpClient().Get(userUrl)
 	//or
@@ -58,6 +60,7 @@ func getUsers(writer http.ResponseWriter) {
 	writer.Write(newUsers)
 }
 
+// getUser retorna um usuario de acordo com o id
 func getUser(writer http.ResponseWriter, id string) {
 	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf(userUrl+"/%s", id), nil)
 	if err != nil {
