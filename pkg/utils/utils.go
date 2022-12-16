@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"net/http"
+	"time"
 )
 
 type Response struct {
@@ -21,4 +22,17 @@ func (resp *Response) JSONResponse(res http.ResponseWriter, statusCode int) {
 	}
 
 	res.Write(responseJson)
+}
+
+func HttpClient() *http.Client {
+	transport := http.DefaultTransport.(*http.Transport).Clone()
+	transport.MaxIdleConns = 100
+	transport.MaxIdleConnsPerHost = 100
+	transport.MaxConnsPerHost = 100
+	client := &http.Client{
+		Timeout:   10 * time.Second,
+		Transport: transport,
+	}
+
+	return client
 }

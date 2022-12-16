@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/phainosz/go-http/pkg/routes"
 	"github.com/phainosz/go-http/pkg/utils"
 	"log"
 	"net/http"
@@ -17,6 +18,8 @@ func main() {
 
 	http.HandleFunc("/home/", home)
 	http.HandleFunc("/home", home)
+	http.HandleFunc("/users", routes.Users)
+	http.HandleFunc("/users/", routes.Users)
 
 	log.Fatal(http.ListenAndServe(port, nil))
 }
